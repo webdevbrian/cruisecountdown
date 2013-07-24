@@ -124,26 +124,23 @@
       "method": "flickr.photos.search",
       "format": "json",
       "safe_search": "1",
-      "content_type": "1",
       "nojsoncallback": "1",
-      "text": "carnival breeze"
+      "media": "photos",
+      "tags": "carnival breeze, caribbean"
     };
 
     makeFlickrRequest(options, function(data) { 
 
       // We need to construct an array of the correctly formed image urls for backstretch
       var flickrImgs = [];
-      for (var i=0;i<50;i++) {
+      for (var i=0;i<49;i++) {
         var url = 'http://farm' + data['photos']['photo'][i].farm + '.staticflickr.com/' + data['photos']['photo'][i].server + '/' + data['photos']['photo'][i].id + '_' + data['photos']['photo'][i].secret + '_z.jpg';
         flickrImgs.push(url);
       };
 
       // Let's shuffle the flickr images to make them random from image to image
       function shuffle(array) {
-        var currentIndex = array.length
-          , temporaryValue
-          , randomIndex
-          ;
+        var currentIndex = array.length, temporaryValue, randomIndex;
 
         // While there remain elements to shuffle...
         while (0 !== currentIndex) {
@@ -164,8 +161,10 @@
       // Shuffle the flickr images
       shuffle(flickrImgs);
 
-      // Define backstretch / rotating images
-      $.backstretch([flickrImgs[0],flickrImgs[1],flickrImgs[2],flickrImgs[3],flickrImgs[4],flickrImgs[5],flickrImgs[6],flickrImgs[7],flickrImgs[8],flickrImgs[9],flickrImgs[10],flickrImgs[11],flickrImgs[12],flickrImgs[13],flickrImgs[14],flickrImgs[15],flickrImgs[16],flickrImgs[17],flickrImgs[18],flickrImgs[19],flickrImgs[20],flickrImgs[21],flickrImgs[22],flickrImgs[23],flickrImgs[24],flickrImgs[25],flickrImgs[26],flickrImgs[27],flickrImgs[28],flickrImgs[29],flickrImgs[30],flickrImgs[31],flickrImgs[32],flickrImgs[33],flickrImgs[34],flickrImgs[35],flickrImgs[36],flickrImgs[37],flickrImgs[38],flickrImgs[39],flickrImgs[40],flickrImgs[41],flickrImgs[42],flickrImgs[43],flickrImgs[44],flickrImgs[45],flickrImgs[46],flickrImgs[47],flickrImgs[48],flickrImgs[49]], {duration: 4000, fade: 500});
+
+      // I'll clean this up later on
+      $.backstretch([flickrImgs[0],flickrImgs[1],flickrImgs[2],flickrImgs[3],flickrImgs[4],flickrImgs[5],flickrImgs[6],flickrImgs[7],flickrImgs[8],flickrImgs[9],flickrImgs[10],flickrImgs[11],flickrImgs[12],flickrImgs[13],flickrImgs[14],flickrImgs[15],flickrImgs[16],flickrImgs[17],flickrImgs[18],flickrImgs[19],flickrImgs[20],flickrImgs[21],flickrImgs[22],flickrImgs[23],flickrImgs[24],flickrImgs[25],flickrImgs[26],flickrImgs[27],flickrImgs[28],flickrImgs[29],flickrImgs[30],flickrImgs[31],flickrImgs[32],flickrImgs[33],flickrImgs[34],flickrImgs[35],flickrImgs[36],flickrImgs[37],flickrImgs[38],flickrImgs[39],flickrImgs[40],flickrImgs[41],flickrImgs[42],flickrImgs[43],flickrImgs[44],flickrImgs[45],flickrImgs[46],flickrImgs[47],flickrImgs[48]], {duration: 4000, fade: 500});
+
 
     });
 

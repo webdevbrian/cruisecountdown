@@ -1,4 +1,6 @@
-
+// Let's do some weather
+// And let's do it fancy
+// BK - 7/23/2013
 (function ($) {
     "use strict";
     $.extend({
