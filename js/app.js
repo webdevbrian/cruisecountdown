@@ -8,10 +8,11 @@
     });
 
     // Disable touch dragging
+    /*
     document.ontouchstart = function(e){ 
         e.preventDefault(); 
     };
-    
+    */
     
 
     // Let's set the count down date and time, we're firing off the count down timer a day beforehand, so we can see that it's cruise time!
@@ -51,11 +52,25 @@
     };
 
     function boatHonk() {
+      // Interesting way to get an iOS device to just fire off an audio clip (because you can't play a sound file automatically by itself apparently)
+      
+      $('iframe').remove();
+      var ifr = document.createElement("iframe");
+
+      ifr.setAttribute('src', "boat.m4a");
+      ifr.setAttribute('width', '1px');
+      ifr.setAttribute('height', '1px');
+      ifr.setAttribute('scrolling', 'no');
+      ifr.style.border="0px";
+
+      document.body.appendChild(ifr);
 
       // For iOS 7 and above, we need to use the html5 api
-      $('#boatHonk').get(0).play();
+      //$('#boatHonk').get(0).play();
 
     };
+
+    boatHonk();
 
     function weatherUpdate() {
 
