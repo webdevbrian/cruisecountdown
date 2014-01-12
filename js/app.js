@@ -11,6 +11,8 @@
     document.ontouchstart = function(e){ 
         e.preventDefault(); 
     };
+    
+    
 
     // Let's set the count down date and time, we're firing off the count down timer a day beforehand, so we can see that it's cruise time!
 
@@ -49,17 +51,10 @@
     };
 
     function boatHonk() {
-      // Interesting way to get an iOS device to just fire off an audio clip (older iOS (v4) that is, not the newer HTML5 audio capable devices)
-      $('iframe').remove();
-      var ifr = document.createElement("iframe");
 
-      ifr.setAttribute('src', "alarm.mp3");
-      ifr.setAttribute('width', '1px');
-      ifr.setAttribute('height', '1px');
-      ifr.setAttribute('scrolling', 'no');
-      ifr.style.border="0px";
+      // For iOS 7 and above, we need to use the html5 api
+      $('#boatHonk').get(0).play();
 
-      document.body.appendChild(ifr);
     };
 
     function weatherUpdate() {
@@ -69,7 +64,7 @@
 
       // Init Simple Weather and populate #weather
       $.simpleWeather({
-        location: config.weatherLocation,
+        zipcode: config.weatherLocation,
         unit: config.weatherUnit,
         success: function(weather) {
           html = 'Current weather in '+config.weatherLocationName+':<br/>' + weather.temp + config.weatherUnit +', ' + weather.currently + '<img src="'+weather.thumbnail+'" />';
@@ -82,6 +77,7 @@
 
     };
 
+
     // Init timer
     timer = setInterval(showRemaining, 1000);
 
@@ -91,6 +87,7 @@
     // Init weather & time remaining on first load
     weatherUpdate();
     showRemaining();
+
 
     // Init Flickr API, and create backstretch instance
     var makeFlickrRequest = function(options, cb) {
@@ -153,5 +150,6 @@
       $.backstretch([flickrImgs[0],flickrImgs[1],flickrImgs[2],flickrImgs[3],flickrImgs[4],flickrImgs[5],flickrImgs[6],flickrImgs[7],flickrImgs[8],flickrImgs[9],flickrImgs[10],flickrImgs[11],flickrImgs[12],flickrImgs[13],flickrImgs[14],flickrImgs[15],flickrImgs[16],flickrImgs[17],flickrImgs[18],flickrImgs[19],flickrImgs[20],flickrImgs[21],flickrImgs[22],flickrImgs[23],flickrImgs[24],flickrImgs[25],flickrImgs[26],flickrImgs[27],flickrImgs[28],flickrImgs[29],flickrImgs[30],flickrImgs[31],flickrImgs[32],flickrImgs[33],flickrImgs[34],flickrImgs[35],flickrImgs[36],flickrImgs[37],flickrImgs[38],flickrImgs[39],flickrImgs[40],flickrImgs[41],flickrImgs[42],flickrImgs[43],flickrImgs[44],flickrImgs[45],flickrImgs[46],flickrImgs[47],flickrImgs[48]], {duration: 4000, fade: 500});
 
     });
+  
 
   }); // DOM Ready
